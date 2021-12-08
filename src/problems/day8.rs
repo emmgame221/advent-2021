@@ -38,8 +38,7 @@ fn part_2(entries: &[(String, String)]) -> i64 {
         let sigs = "abcdefg"
             .chars()
             .permutations(7)
-            .filter(|p| is_satisfying_assignment(entry, p))
-            .next()
+            .find(|p| is_satisfying_assignment(entry, p))
             .unwrap();
         let mut output_str = String::new();
         for output in outputs.iter() {
