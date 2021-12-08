@@ -11,7 +11,7 @@ pub fn print_solution() {
 fn part_1(positions: &[isize]) -> isize {
     let max = *positions.iter().max().unwrap();
     let mut best_score = isize::MAX;
-    for x in 1..=max {
+    for x in 0..=max {
         let score = positions.iter().fold(0, |a, x2| a + isize::abs(x2 - x));
         if score < best_score {
             best_score = score
@@ -23,7 +23,7 @@ fn part_1(positions: &[isize]) -> isize {
 fn part_2(positions: &[isize]) -> isize {
     let max = *positions.iter().max().unwrap();
     let mut best_score = isize::MAX;
-    for x in 1..=max {
+    for x in 0..=max {
         let score = positions.iter().fold(0, |a, x2| {
             let range = isize::abs(x2 - x);
             let fuel = range * (range + 1) / 2;
