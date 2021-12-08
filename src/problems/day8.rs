@@ -169,7 +169,7 @@ fn is_satisfying_assignment(entry: &(String, String), abcdefg: &[char]) -> bool 
 
 #[cfg(test)]
 mod test {
-    use crate::problems::day8::is_satisfying_assignment;
+    use super::is_satisfying_assignment;
 
     #[test]
     fn test_satisfying_1() {
