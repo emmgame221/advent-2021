@@ -131,7 +131,6 @@ fn basin_size(
         } else {
             basin_size(map, x, y - 1, found)
         };
-        let val = 1 + right + left + up + down;
-        val
+        1 + right + left + up + down
     }
 }
