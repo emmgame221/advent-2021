@@ -89,7 +89,7 @@ pub fn print_solution() {
         .sorted()
         .rev()
         .take(3)
-        .fold(1, |a, b| a * b);
+        .product();
     println!("Day 9 Part 2: {}", p2);
 }
 
