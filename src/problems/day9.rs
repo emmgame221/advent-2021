@@ -97,6 +97,7 @@ fn risk_level(h: usize) -> usize {
     h + 1
 }
 
+/// Basically breadth-first search
 fn basin_size(
     map: &Vec<Vec<usize>>,
     x: usize,
@@ -121,15 +122,15 @@ fn basin_size(
         } else {
             basin_size(map, x - 1, y, found)
         };
-        let up = if *found.get(&(x, y + 1)).unwrap_or(&false) {
-            0
-        } else {
-            basin_size(map, x, y + 1, found)
-        };
-        let down = if *found.get(&(x, y - 1)).unwrap_or(&false) {
+        let up = if *found.get(&(x, y - 1)).unwrap_or(&false) {
             0
         } else {
             basin_size(map, x, y - 1, found)
+        };
+        let down = if *found.get(&(x, y + 1)).unwrap_or(&false) {
+            0
+        } else {
+            basin_size(map, x, y + 1, found)
         };
         1 + right + left + up + down
     }
