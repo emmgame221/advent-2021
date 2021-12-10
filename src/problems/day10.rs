@@ -6,15 +6,11 @@ use std::{
 pub fn print_solution() {
     let input = File::open("./inputs/input10.txt").unwrap();
     let lines = BufReader::new(input).lines();
-    let paren_score = 3;
-    let square_score = 57;
-    let curly_score = 1197;
-    let angle_score = 25137;
     let mut total = 0;
     let mut scores: Vec<i64> = Vec::new();
     for line in lines {
         let line = line.unwrap();
-        let mut score = 0i64;
+        let mut score = 0;
         let mut stack: Vec<char> = Vec::new();
         let mut corrupted = false;
         for c in line.chars() {
@@ -23,26 +19,12 @@ pub fn print_solution() {
                     if matching(*ch, c) {
                         stack.pop().unwrap();
                     } else {
-                        //println!("Mismatched: {:?}, {}", stack, c);
-                        match c {
-                            ')' => total += paren_score,
-                            ']' => total += square_score,
-                            '}' => total += curly_score,
-                            '>' => total += angle_score,
-                            _ => panic!("????"),
-                        }
+                        total += p1_score(c);
                         corrupted = true;
                         break;
                     }
                 } else {
-                    //println!("Empty Stack: {:?}, {}", stack, c);
-                    match c {
-                        ')' => total += paren_score,
-                        ']' => total += square_score,
-                        '}' => total += curly_score,
-                        '>' => total += angle_score,
-                        _ => panic!("????"),
-                    }
+                    total += p1_score(c);
                     corrupted = true;
                     break;
                 }
@@ -71,12 +53,22 @@ fn matching(open: char, close: char) -> bool {
         || (open == '<' && close == '>')
 }
 
+fn p1_score(c: char) -> i64 {
+    match c {
+        ')' => 3,
+        ']' => 57,
+        '}' => 1197,
+        '>' => 25137,
+        _ => 0,
+    }
+}
+
 fn p2_score(c: char) -> i64 {
     match c {
         '(' => 1,
         '[' => 2,
         '{' => 3,
         '<' => 4,
-        _ => 0
+        _ => 0,
     }
 }
