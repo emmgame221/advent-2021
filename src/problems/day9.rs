@@ -97,7 +97,7 @@ fn risk_level(h: usize) -> usize {
     h + 1
 }
 
-/// Basically breadth-first search
+/// Basically depth-first search
 fn basin_size(
     map: &Vec<Vec<usize>>,
     x: usize,
