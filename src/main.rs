@@ -1,6 +1,7 @@
 use clap::{App, Arg};
 
 mod problems;
+pub mod util;
 
 use crate::problems::*;
 

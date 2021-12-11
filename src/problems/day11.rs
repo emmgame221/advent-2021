@@ -1,4 +1,5 @@
 use std::{fs::File, io::{BufReader, BufRead}};
+use crate::util::adjacent_with_diags;
 
 pub fn print_solution() {
     let input = File::open("./inputs/input11.txt").unwrap();
@@ -28,35 +29,6 @@ pub fn print_solution() {
     println!("Day 11 Part 2: {}", step);
 }
 
-fn adjacent(x: usize, y: usize, max_x: usize, max_y: usize) -> Vec<(usize, usize)> {
-    let mut adj = Vec::new();
-    if x > 0 {
-        adj.push((x - 1, y));
-        if y > 0 {
-            adj.push((x - 1, y - 1));
-        }
-        if y < max_y - 1 {
-            adj.push((x - 1, y + 1));
-        }
-    }
-    if x < max_x - 1 {
-        adj.push((x + 1, y));
-        if y > 0 {
-            adj.push((x + 1, y - 1));
-        }
-        if y < max_y - 1 {
-            adj.push((x + 1, y + 1));
-        }
-    }
-    if y < max_y - 1 {
-        adj.push((x, y + 1));
-    }
-    if y > 0 {
-        adj.push((x, y - 1));
-    }
-    adj
-}
-
 fn sim_step(octopi: &mut Vec<Vec<usize>>) -> usize {
     let mut flashes = 0;
     let mut flashed = vec![vec![false; 10]; 10];
@@ -77,7 +49,7 @@ fn sim_step(octopi: &mut Vec<Vec<usize>>) -> usize {
                     done = false;
                     flashes += 1;
                     //println!("x:{} y:{} adj:{:?}", x, y, adjacent(x, y, 10, 10));
-                    for (adj_x, adj_y) in adjacent(x, y, 10, 10) {
+                    for (adj_x, adj_y) in adjacent_with_diags(x, y, 10, 10) {
                         octopi[adj_y][adj_x] += 1;
                     }
                 }
@@ -112,7 +84,7 @@ fn sim_step_p2(octopi: &mut Vec<Vec<usize>>) -> bool {
                     flashed[y][x] = true;
                     done = false;
                     //println!("x:{} y:{} adj:{:?}", x, y, adjacent(x, y, 10, 10));
-                    for (adj_x, adj_y) in adjacent(x, y, 10, 10) {
+                    for (adj_x, adj_y) in adjacent_with_diags(x, y, 10, 10) {
                         octopi[adj_y][adj_x] += 1;
                     }
                 }
