@@ -12,10 +12,10 @@ pub fn print_solution() {
     assert_eq!(octopi.len(), 10);
     assert_eq!(octopi[0].len(), 10);
     let mut total = 0;
-    for i in 1..=100 {
+    for _i in 1..=100 {
         total += sim_step(&mut octopi);
-        print_octopi(&octopi);
-        println!("steps: {} total flashes: {}", i, total);
+        //print_octopi(&octopi);
+        //println!("steps: {} total flashes: {}", i, total);
     }
     println!("Day 11 Part 1: {}", total);
     let mut step = 0;
@@ -129,6 +129,7 @@ fn sim_step_p2(octopi: &mut Vec<Vec<usize>>) -> bool {
     flashed.iter().all(|r| r.iter().all(|b| *b))
 }
 
+#[allow(dead_code)]
 fn print_octopi(octopi: &Vec<Vec<usize>>) {
     for y in 0..10 {
         for x in 0..10 {
