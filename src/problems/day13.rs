@@ -60,7 +60,7 @@ fn fold(points: &[(isize, isize)], fold: isize, hori: bool) -> Vec<(isize, isize
 
 fn print_grid(points: &[(isize, isize)]) {
     let max_x = points.iter().max_by(|(x1, _y1), (x2, _y2)| x1.cmp(x2)).unwrap().0;
-    let max_y = points.iter().max_by(|(_x1, y1), (_x2, y2)| y1.cmp(y2)).unwrap().0;
+    let max_y = points.iter().max_by(|(_x1, y1), (_x2, y2)| y1.cmp(y2)).unwrap().1;
     for y in 0..=max_y {
         for x in 0..=max_x {
             if points.contains(&(x, y)) {
