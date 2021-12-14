@@ -62,6 +62,9 @@ fn main() {
                 "14" => {
                     day14::print_solution();
                 }
+                "15" => {
+                    day15::print_solution();
+                }
                 _ => {}
             }
         }
@@ -83,4 +86,5 @@ fn run_all() {
     day12::print_solution();
     day13::print_solution();
     day14::print_solution();
+    day15::print_solution();
 }
